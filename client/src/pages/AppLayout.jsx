@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const AppLayout = () => {
   return (
-    <div className="grid h-screen grid-rows-[auto_1fr] font-body">
+    <div className="font-body">
       <Navbar />
       <main>
         <Outlet />

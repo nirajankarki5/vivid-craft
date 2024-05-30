@@ -4,4 +4,4 @@
 
 ## Run client (frontend)
 
-- cd client -> `npm run dev`
+- cd client -> `npm install` -> `npm run dev`
