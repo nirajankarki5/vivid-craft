@@ -16,7 +16,7 @@ const Navbar = () => {
       />
 
       <form
-        className={`${isNavlinkShown ? "absolute left-0 top-24 flex" : "hidden"} h-10 w-full items-center gap-2 rounded-full bg-gray-100 px-4 sm:flex lg:h-12 lg:w-[50rem]`}
+        className={`${isNavlinkShown ? "absolute left-0 top-24 flex h-14" : "hidden"} w-full items-center gap-2 bg-gray-100 px-4 sm:flex sm:h-10 sm:rounded-full lg:h-12 lg:w-[50rem]`}
       >
         <FaMagnifyingGlass />
         <input
@@ -27,7 +27,7 @@ const Navbar = () => {
       </form>
 
       <div
-        className={`${isNavlinkShown ? "absolute top-40 flex" : "hidden"} gap-6 sm:flex md:gap-10 lg:gap-14`}
+        className={`${isNavlinkShown ? "absolute left-0 top-[9.5rem] flex w-full flex-col items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-10 lg:gap-14`}
       >
         <Link to="/about">About</Link>
         <Link to="/login">Log&nbsp;in</Link>
