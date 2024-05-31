@@ -15,12 +15,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="search" element={<Search />} />
           <Route path="image/:id" element={<SingleImage />} />
+          <Route path="*" element={<Error />} />
         </Route>
 
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
-
-        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
