@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <nav
       style={{ top: `${top}px` }}
-      className="transition-top fixed top-0 flex h-20 w-full items-center justify-between gap-6 border-b-gray-100 bg-white px-8 duration-300 md:gap-10 lg:gap-14"
+      className="transition-top fixed top-0 z-50 flex h-20 w-full items-center justify-between gap-6 border-b-gray-100 bg-white px-8 duration-300 md:gap-10 lg:gap-14"
     >
       <Link
         to={"/"}
