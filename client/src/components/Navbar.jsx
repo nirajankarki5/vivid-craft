@@ -9,6 +9,7 @@ const Navbar = () => {
   const [top, setTop] = useState(0);
 
   useEffect(() => {
+    // Make navbar hide and appear when user scrolls down
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       if (prevScrollpos > currentScrollPos) {
