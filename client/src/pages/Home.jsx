@@ -3,8 +3,6 @@ import ImageGrid from "../components/ImageGrid";
 import { NavLink } from "react-router-dom";
 
 const Home = () => {
-  const [value, setValue] = useState("all");
-
   const categories = [
     { name: "All", value: "all" },
     { name: "Nature", value: "nature" },
@@ -16,13 +14,9 @@ const Home = () => {
     { name: "Food & Drink", value: "food-and-drink" },
   ];
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   return (
     <div className="mt-[5rem] sm:mt-20">
-      <div className="no-scrollbar flex gap-5 overflow-x-scroll border-b-[1px] px-4 pt-2 sm:px-8">
+      <div className="no-scrollbar flex gap-5 overflow-x-scroll border-b-[1px] px-4 pt-0 sm:px-8">
         {categories.map((category) => (
           <NavLink
             key={category.value}
