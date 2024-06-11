@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Box, Tab, Tabs } from "@mui/material";
 import ImageGrid from "../components/ImageGrid";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const [value, setValue] = useState("all");
@@ -22,31 +22,24 @@ const Home = () => {
 
   return (
     <div className="mt-[5rem] sm:mt-20">
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="tabs"
-          variant="scrollable"
-
-          // TabIndicatorProps={{
-          //   style: {
-          //     backgroundColor: "#936639",
-          //   },
-          // }}
-        >
-          {categories.map((category) => (
-            <Tab
-              key={category.value}
-              label={category.name}
-              value={category.value}
-            />
-          ))}
-        </Tabs>
-      </Box>
+      <div className="no-scrollbar flex gap-5 overflow-x-scroll border-b-[1px] p-2 px-4 sm:px-8">
+        {categories.map((category) => (
+          <NavLink
+            key={category.value}
+            to={`/c/${category.value}`}
+            style={({ isActive }) => ({
+              color: isActive ? "blue" : "#777",
+              borderBottom: isActive && "blue",
+            })}
+            className="text-nowrap font-normal  uppercase"
+          >
+            {category.name}
+          </NavLink>
+        ))}
+      </div>
 
       {/* Created a new component that displays image in grid. Displays image according to the value i.e. category */}
-      <ImageGrid category={value} />
+      <ImageGrid />
     </div>
   );
 };
