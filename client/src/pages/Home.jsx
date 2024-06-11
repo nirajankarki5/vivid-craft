@@ -22,16 +22,16 @@ const Home = () => {
 
   return (
     <div className="mt-[5rem] sm:mt-20">
-      <div className="no-scrollbar flex gap-5 overflow-x-scroll border-b-[1px] p-2 px-4 sm:px-8">
+      <div className="no-scrollbar flex gap-5 overflow-x-scroll border-b-[1px] px-4 pt-2 sm:px-8">
         {categories.map((category) => (
           <NavLink
             key={category.value}
             to={`/c/${category.value}`}
             style={({ isActive }) => ({
               color: isActive ? "blue" : "#777",
-              borderBottom: isActive && "blue",
+              borderBottom: isActive && "2px solid blue",
             })}
-            className="text-nowrap font-normal  uppercase"
+            className="block text-nowrap pb-2 font-normal uppercase"
           >
             {category.name}
           </NavLink>
