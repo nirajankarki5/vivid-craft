@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ImageListItem from "@mui/material/ImageListItem";
 import { useMediaQuery } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
@@ -57,14 +57,16 @@ const ImageGrid = () => {
       gap={8}
     >
       {query.data.map((item) => (
-        <ImageListItem key={item.imageUrl}>
-          <img
-            srcSet={`${item.imageUrl}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            src={`${item.imageUrl}?w=248&fit=crop&auto=format`}
-            // alt={item.title}
-            loading="lazy"
-          />
-        </ImageListItem>
+        <Link to={`/image/${item.imageId}`} key={item.imageId}>
+          <ImageListItem>
+            <img
+              srcSet={`${item.imageUrl}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.imageUrl}?w=248&fit=crop&auto=format`}
+              // alt={item.title}
+              loading="lazy"
+            />
+          </ImageListItem>
+        </Link>
       ))}
     </ImageList>
   );

@@ -5,8 +5,7 @@ import AppLayout from "./pages/AppLayout";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import SingleImage from "./pages/SingleImage";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -26,12 +25,11 @@ function App() {
           <Route path="/" element={<AppLayout />}>
             <Route path="c/:categoryName" element={<Home />} />
             <Route path="search" element={<Search />} />
-            <Route path="image/:id" element={<SingleImage />} />
+            <Route path="image/:imageId" element={<SingleImage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
+          <Route path="auth" element={<Auth />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -1,7 +1,10 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const SingleImage = () => {
-  return <h1>SingleImage</h1>;
+  const { imageId } = useParams();
+
+  return <div className="mt-[5rem]">{imageId}</div>;
 };
 
 export default SingleImage;
