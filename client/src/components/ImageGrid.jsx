@@ -1,13 +1,30 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getImages } from "../services/apiImages";
+import ImageListItem from "@mui/material/ImageListItem";
+import { useMediaQuery } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
 import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
+import { getImages } from "../services/apiImages";
 
 const ImageGrid = () => {
   const { categoryName } = useParams();
+
+  // make resposive image grid
+  const isSmallScreen = useMediaQuery("(max-width:768px)");
+  const isMediumScreen = useMediaQuery(
+    "(min-width:769px) and (max-width:1024px)",
+  );
+  const isLargeScreen = useMediaQuery("(min-width:1025px)");
+
+  let cols;
+  if (isSmallScreen) {
+    cols = 1;
+  } else if (isMediumScreen) {
+    cols = 2;
+  } else if (isLargeScreen) {
+    cols = 3;
+  }
 
   const query = useQuery({
     queryKey: ["images"],
@@ -17,7 +34,7 @@ const ImageGrid = () => {
 
   if (query.isLoading) {
     return (
-      <div className="mx-auto mt-5 grid w-2/3 grid-cols-3 gap-4">
+      <div className="mx-auto mt-5 grid grid-cols-1 gap-4 md:w-4/5 md:grid-cols-2 lg:w-2/3 lg:grid-cols-3 xl:w-5/6 2xl:w-[1400px]">
         {/* This is done in order to display 6 skeleton loading screen */}
 
         {Array.from({ length: 6 }, (_, i) => (
@@ -34,9 +51,9 @@ const ImageGrid = () => {
 
   return (
     <ImageList
-      className="mx-auto mt-5 md:w-4/5 lg:w-2/3"
+      className="mx-auto mt-5 md:w-4/5 lg:w-2/3 xl:w-5/6 2xl:w-[1400px]"
       variant="masonry"
-      cols={3}
+      cols={cols}
       gap={8}
     >
       {query.data.map((item) => (
