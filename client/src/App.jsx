@@ -7,7 +7,7 @@ import Search from "./pages/Search";
 import SingleImage from "./pages/SingleImage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Error from "./pages/Error";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,7 +27,7 @@ function App() {
             <Route path="c/:categoryName" element={<Home />} />
             <Route path="search" element={<Search />} />
             <Route path="image/:id" element={<SingleImage />} />
-            <Route path="*" element={<Error />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
 
           <Route path="login" element={<Login />} />
