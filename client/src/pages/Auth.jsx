@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import AuthImg from "../assets/auth_img.jpg";
+import Logo from "../assets/logo.svg";
 
 const Auth = () => {
   const [isSignupVisible, setIsSignupVisible] = useState(false);
@@ -26,10 +28,14 @@ const Auth = () => {
         </div>
 
         <div
-          className="animate-fadein rounded-xl bg-yellow-300 opacity-0 md:animate-fadeindown"
+          className="animate-fadein rounded-xl opacity-0 md:animate-fadeindown"
           style={{ animationFillMode: "forwards" }}
         >
-          image
+          <img
+            className="h-full object-cover"
+            src={AuthImg}
+            alt="Vivid Craft"
+          />
         </div>
       </div>
     </div>
