@@ -40,9 +40,9 @@ export default {
       },
 
       animation: {
-        fadein: "fade-in 1s ease-in-out 0.25s 1",
-        fadeindown: "fade-in-down 1s ease-in 0.25s 1",
-        fadeinup: "fade-in-up 1s ease-in-out 0.25s 1",
+        fadein: "fade-in 0.5s ease-in-out 0.25s 1",
+        fadeindown: "fade-in-down 0.75s ease-in 0.25s 1",
+        fadeinup: "fade-in-up 0.75s ease-in-out 0.25s 1",
       },
     },
   },

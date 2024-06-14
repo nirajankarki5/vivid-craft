@@ -59,8 +59,8 @@ const Navbar = () => {
         className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-10 lg:gap-14`}
       >
         <Link to="/about">About</Link>
-        <Link to="/login">Log&nbsp;in</Link>
-        <Link to="/signup">Sign&nbsp;up</Link>
+        <Link to="/auth">Log&nbsp;in</Link>
+        {/* <Link to="/signup">Sign&nbsp;up</Link> */}
       </div>
     </nav>
   );
