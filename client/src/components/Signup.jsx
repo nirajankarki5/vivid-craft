@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 const Signup = ({ isSignupVisible, setIsSignupVisible }) => {
   return (
     <div
-      className={`absolute top-0 z-40 w-full translate-x-[-100%] transition-all duration-500 md:w-full ${isSignupVisible ? "translate-x-0" : "opacity-0"}`}
+      className={`absolute top-0 z-40 w-full translate-x-[-100%] transition-all duration-500 md:w-full ${isSignupVisible ? "translate-x-[0%]" : "opacity-0]"}`}
     >
       <h1 className="mt-8 text-center text-4xl font-medium md:mt-20 md:text-5xl">
         Sign up
