@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         body: ["Poppins"],
       },
+      colors: {
+        "primary-color": "#312e81",
+        "secondary-color": "#f59e0b",
+      },
 
       // For animation. Use "animate-fadeinup" in classname
       keyframes: {

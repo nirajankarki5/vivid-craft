@@ -51,7 +51,7 @@ const ImageGrid = () => {
 
   return (
     <ImageList
-      className="animate-fadein mx-auto mt-5 opacity-0 md:w-4/5 lg:w-2/3 xl:w-5/6 2xl:w-[1400px]"
+      className="mx-auto mt-5 animate-fadein opacity-0 md:w-4/5 lg:w-2/3 xl:w-5/6 2xl:w-[1400px]"
       style={{ animationFillMode: "forwards" }}
       variant="masonry"
       cols={cols}

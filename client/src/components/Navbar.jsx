@@ -55,13 +55,22 @@ const Navbar = () => {
         />
       </form>
 
-      <div
-        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-10 lg:gap-14`}
+      <ul
+        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-8 lg:gap-10`}
       >
-        <Link to="/about">About</Link>
-        <Link to="/auth">Log&nbsp;in</Link>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link
+            className="rounded-sm bg-gray-600 px-5 py-2 text-white"
+            to="/auth"
+          >
+            Log&nbsp;in
+          </Link>
+        </li>
         {/* <Link to="/signup">Sign&nbsp;up</Link> */}
-      </div>
+      </ul>
     </nav>
   );
 };
