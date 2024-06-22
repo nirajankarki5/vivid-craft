@@ -1,8 +1,13 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import TextField from "../ui/TextField";
 import Button from "../ui/Button";
 
-const Login = ({ isSignupVisible, setIsSignupVisible }) => {
+type prop = {
+  isSignupVisible: boolean;
+  setIsSignupVisible: Dispatch<SetStateAction<boolean>>;
+};
+
+const Login: React.FC<prop> = ({ isSignupVisible, setIsSignupVisible }) => {
   return (
     <div
       className={`${isSignupVisible ? "opacity-0" : "transition-all duration-500"}`}
@@ -26,7 +31,7 @@ const Login = ({ isSignupVisible, setIsSignupVisible }) => {
           placeholder="Enter your password"
         />
 
-        <Button name="Log in" />
+        <Button name="Log in" onClick={() => console.log("click")} />
       </form>
 
       <p className="text-center font-semibold md:mt-4">

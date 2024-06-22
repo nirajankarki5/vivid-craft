@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import AuthImg from "../assets/auth_img.jpg";
-import Logo from "../assets/logo.svg";
 
 const Auth = () => {
   const [isSignupVisible, setIsSignupVisible] = useState(false);

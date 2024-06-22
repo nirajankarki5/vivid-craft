@@ -1,8 +1,13 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import TextField from "../ui/TextField";
 import Button from "../ui/Button";
 
-const Signup = ({ isSignupVisible, setIsSignupVisible }) => {
+type prop = {
+  isSignupVisible: boolean;
+  setIsSignupVisible: Dispatch<SetStateAction<boolean>>;
+};
+
+const Signup: React.FC<prop> = ({ isSignupVisible, setIsSignupVisible }) => {
   return (
     <div
       className={`absolute top-0 z-40 w-full translate-x-[-100%] transition-all duration-500 md:w-full ${isSignupVisible ? "translate-x-[0%]" : "opacity-0]"}`}
@@ -31,7 +36,7 @@ const Signup = ({ isSignupVisible, setIsSignupVisible }) => {
           placeholder="Enter your password"
         />
 
-        <Button name="Sign up" />
+        <Button name="Sign up" onClick={() => console.log("click")} />
       </form>
 
       <p className="text-center font-semibold md:mt-4">
