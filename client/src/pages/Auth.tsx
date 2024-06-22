@@ -4,7 +4,7 @@ import Signup from "../components/Signup";
 import AuthImg from "../assets/auth_img.jpg";
 
 const Auth = () => {
-  const [isSignupVisible, setIsSignupVisible] = useState(false);
+  const [isSignupVisible, setIsSignupVisible] = useState<boolean>(false);
 
   return (
     <div className="p-4 md:px-12 md:py-16 lg:px-20">

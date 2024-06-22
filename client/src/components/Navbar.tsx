@@ -4,9 +4,11 @@ import logo from "../assets/logo.svg";
 import { FaMagnifyingGlass, FaBars } from "react-icons/fa6";
 
 const Navbar = () => {
-  const [isNavlinkShown, setIsNavlinkShown] = useState(false);
-  const [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
-  const [top, setTop] = useState(0);
+  const [isNavlinkShown, setIsNavlinkShown] = useState<boolean>(false);
+  const [prevScrollpos, setPrevScrollpos] = useState<number>(
+    window.pageYOffset,
+  );
+  const [top, setTop] = useState<number>(0);
 
   useEffect(() => {
     // Make navbar hide and appear when user scrolls down

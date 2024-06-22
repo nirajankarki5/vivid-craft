@@ -77,7 +77,7 @@ const ImageGrid = () => {
   //   </ImageList>
   // );
 
-  return <h1>Test</h1>;
+  return <h1 className="h-screen">Test</h1>;
 };
 
 export default ImageGrid;
