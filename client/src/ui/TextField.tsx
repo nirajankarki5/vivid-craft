@@ -1,6 +1,10 @@
-import React from "react";
+type prop = {
+  label: String;
+  type: string;
+  placeholder: string;
+};
 
-const TextField = ({ label, type, placeholder }) => {
+const TextField: React.FC<prop> = ({ label, type, placeholder }) => {
   return (
     <>
       <label

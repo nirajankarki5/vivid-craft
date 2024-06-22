@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import ImageGrid from "../components/ImageGrid";
 import { NavLink } from "react-router-dom";
 
@@ -23,7 +22,7 @@ const Home = () => {
             to={`/c/${category.value}`}
             style={({ isActive }) => ({
               color: isActive ? "blue" : "#777",
-              borderBottom: isActive && "2px solid blue",
+              borderBottom: isActive ? "2px solid blue" : undefined,
             })}
             className="block text-nowrap pb-2 font-normal uppercase"
           >
