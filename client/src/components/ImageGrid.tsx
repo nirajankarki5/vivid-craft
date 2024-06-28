@@ -9,7 +9,7 @@ import { getImages } from "../services/apiImages";
 import Error from "../pages/Error";
 
 const ImageGrid = () => {
-  // const { categoryName } = useParams();
+  const { categoryName } = useParams();
 
   // // make resposive image grid
   // const isSmallScreen = useMediaQuery("(max-width:768px)");
@@ -77,7 +77,7 @@ const ImageGrid = () => {
   //   </ImageList>
   // );
 
-  return <h1 className="h-screen">Test</h1>;
+  return <h1 className="h-screen">{categoryName}</h1>;
 };
 
 export default ImageGrid;

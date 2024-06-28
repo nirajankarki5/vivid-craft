@@ -7,6 +7,8 @@ import Search from "./pages/Search";
 import SingleImage from "./pages/SingleImage";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import UserProfile from "./pages/UserProfile";
+import About from "./pages/About";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +28,8 @@ function App() {
             <Route path="c/:categoryName" element={<Home />} />
             <Route path="search" element={<Search />} />
             <Route path="image/:imageId" element={<SingleImage />} />
+            <Route path="my-profile" element={<UserProfile />} />
+            <Route path="about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 

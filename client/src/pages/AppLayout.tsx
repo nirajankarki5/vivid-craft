@@ -11,7 +11,7 @@ const AppLayout = () => {
   return (
     <div className="font-body">
       <Navbar />
-      <main>
+      <main className="mt-[5rem] sm:mt-20">
         <Outlet />
       </main>
     </div>

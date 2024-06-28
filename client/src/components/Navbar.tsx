@@ -62,13 +62,18 @@ const Navbar = () => {
         className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col flex-wrap items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-8`}
       >
         <li className="flex items-center">
-          <Link to="/about" className="p-0">
+          <Link
+            to="/about"
+            onClick={() => setIsNavlinkShown(false)}
+            className="p-0"
+          >
             About
           </Link>
         </li>
         <li>
           <Link
             to="/upload"
+            onClick={() => setIsNavlinkShown(false)}
             className="flex items-center gap-2 px-4 py-2 text-green-500 transition-all duration-200 hover:bg-gray-200"
           >
             <p>Upload</p>

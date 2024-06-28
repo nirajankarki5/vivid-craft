@@ -14,7 +14,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="mt-[5rem] sm:mt-20">
+    <>
       <div className="no-scrollbar flex gap-5 overflow-x-scroll border-b-[1px] px-4 pt-0 sm:px-8">
         {categories.map((category) => (
           <NavLink
@@ -33,7 +33,7 @@ const Home = () => {
 
       {/* Created a new component that displays image in grid. Displays image according to the value i.e. category */}
       <ImageGrid />
-    </div>
+    </>
   );
 };
 
