@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { FaMagnifyingGlass, FaBars } from "react-icons/fa6";
+import { PiUploadSimple } from "react-icons/pi";
 
 const Navbar = () => {
   const [isNavlinkShown, setIsNavlinkShown] = useState<boolean>(false);
@@ -58,14 +59,25 @@ const Navbar = () => {
       </form>
 
       <ul
-        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-8 lg:gap-10`}
+        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col flex-wrap items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-8`}
       >
-        <li>
-          <Link to="/about">About</Link>
+        <li className="flex items-center">
+          <Link to="/about" className="p-0">
+            About
+          </Link>
         </li>
         <li>
           <Link
-            className="rounded-sm bg-gray-600 px-5 py-2 text-white"
+            to="/upload"
+            className="flex items-center gap-2 px-4 py-2 text-green-500 transition-all duration-200 hover:bg-gray-200"
+          >
+            <p>Upload</p>
+            <PiUploadSimple className="text-xl" />
+          </Link>
+        </li>
+        <li className="flex items-center">
+          <Link
+            className="rounded-sm bg-gray-600 px-5 py-2 text-white transition-all duration-200 hover:bg-gray-700"
             to="/auth"
           >
             Log&nbsp;in
