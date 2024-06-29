@@ -23,10 +23,10 @@ const UserProfile = () => {
         </aside>
 
         <section className="mb-5 mt-2 text-center md:my-auto md:text-left">
-          <p className="text-md font-semibold text-gray-400 md:text-xl">
+          <p className="text-md mb-1 font-semibold text-gray-800 md:text-2xl">
             @username
           </p>
-          <p>Email</p>
+          <p>email@gmail.com</p>
 
           <p className="w-80 pt-5 text-center text-sm text-gray-400 md:w-auto md:text-left md:text-base">
             Get gorgeous, high-quality pictures that User has handpicked for
