@@ -2,10 +2,10 @@ import React, { Dispatch, SetStateAction } from "react";
 import TextField from "../ui/TextField";
 import Button from "../ui/Button";
 
-type prop = {
+interface prop {
   isSignupVisible: boolean;
   setIsSignupVisible: Dispatch<SetStateAction<boolean>>;
-};
+}
 
 const Login: React.FC<prop> = ({ isSignupVisible, setIsSignupVisible }) => {
   return (
@@ -31,7 +31,7 @@ const Login: React.FC<prop> = ({ isSignupVisible, setIsSignupVisible }) => {
           placeholder="Enter your password"
         />
 
-        <Button name="Log in" onClick={() => console.log("click")} />
+        <Button onClick={() => console.log("click")}>Log in </Button>
       </form>
 
       <p className="text-center font-semibold md:mt-4">

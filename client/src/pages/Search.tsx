@@ -1,4 +1,4 @@
-const Search = () => {
+const Search: React.FC = () => {
   return <h1>Search</h1>;
 };
 

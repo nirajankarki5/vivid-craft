@@ -1,7 +1,7 @@
 import ImageGrid from "../components/ImageGrid";
 import { NavLink } from "react-router-dom";
 
-const Home = () => {
+const Home: React.FC = () => {
   const categories = [
     { name: "All", value: "all" },
     { name: "Nature", value: "nature" },

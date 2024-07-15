@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 import { FaMagnifyingGlass, FaBars } from "react-icons/fa6";
 import { PiUploadSimple } from "react-icons/pi";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isNavlinkShown, setIsNavlinkShown] = useState<boolean>(false);
   const [prevScrollpos, setPrevScrollpos] = useState<number>(
     window.pageYOffset,

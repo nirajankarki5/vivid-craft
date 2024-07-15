@@ -5,7 +5,7 @@ import { PiUploadSimple, PiHeartLight } from "react-icons/pi";
 import { FaRegUser } from "react-icons/fa6";
 import { useState } from "react";
 
-const UserProfile = () => {
+const UserProfile: React.FC = () => {
   const [value, setValue] = useState<number>(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

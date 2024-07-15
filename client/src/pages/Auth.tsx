@@ -3,7 +3,7 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import AuthImg from "../assets/auth_img.jpg";
 
-const Auth = () => {
+const Auth: React.FC = () => {
   const [isSignupVisible, setIsSignupVisible] = useState<boolean>(false);
 
   return (

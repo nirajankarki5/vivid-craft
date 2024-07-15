@@ -8,7 +8,7 @@ import ImageList from "@mui/material/ImageList";
 import { getImages } from "../services/apiImages";
 import Error from "../pages/Error";
 
-const ImageGrid = () => {
+const ImageGrid: React.FC = () => {
   const { categoryName } = useParams();
 
   // // make resposive image grid

@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-const AppLayout = () => {
+const AppLayout: React.FC = () => {
   const location = useLocation();
 
   if (location.pathname === "/") {

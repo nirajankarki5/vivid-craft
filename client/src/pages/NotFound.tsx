@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
   return (
     <div className="my-10 mt-[8rem] text-center text-gray-400">
       <h1 className="mb-4 text-5xl font-medium">Not found!!!</h1>

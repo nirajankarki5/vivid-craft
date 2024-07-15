@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 
-type RouteParams = {
+interface RouteParams {
   imageId: string;
   [key: string]: string | undefined;
-};
+}
 
-const SingleImage = () => {
+const SingleImage: React.FC = () => {
   const { imageId } = useParams<RouteParams>();
 
   return <div className="mt-[5rem]">{imageId}</div>;

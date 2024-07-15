@@ -1,1 +1,1 @@
-export const baseUrl: String = "http://my api";
+export const baseUrl: string = "http://my api";
