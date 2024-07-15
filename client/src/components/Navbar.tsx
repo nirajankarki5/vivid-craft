@@ -52,7 +52,7 @@ const Navbar = () => {
       >
         <FaMagnifyingGlass className="text-gray-400" />
         <input
-          className="h-full w-full focus:outline-none"
+          className="h-full w-full focus:border-b-[1px] focus:border-gray-400 focus:outline-none"
           type="text"
           placeholder="Search image..."
         />
