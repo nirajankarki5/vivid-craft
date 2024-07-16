@@ -7,6 +7,7 @@ const cors = require("cors");
 const connectDB = require("./db/connect");
 
 // Router
+const imageRoute = require("./routes/image");
 
 // Import middlewares
 const notFound = require("./middleware/not-found");
@@ -20,6 +21,8 @@ app.use(cors());
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/api/image", imageRoute);
 
 app.use(notFound);
 app.use(errorHandler);
