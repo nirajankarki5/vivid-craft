@@ -30,6 +30,9 @@ const ImageSchema = new mongoose.Schema(
     tags: {
       type: [String],
     },
+
+    // Adding favourites count
+    favouritesCount: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

@@ -7,6 +7,7 @@ const cors = require("cors");
 const connectDB = require("./db/connect");
 
 // Router
+const userRoute = require("./routes/user");
 const imageRoute = require("./routes/image");
 
 // Import middlewares
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/api/user", userRoute);
 app.use("/api/image", imageRoute);
 
 app.use(notFound);

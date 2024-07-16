@@ -49,6 +49,21 @@ const updateImage = async (req, res) => {
   res.status(200).json(image);
 };
 
+const addFavourite = async (req, res) => {
+  const { imageId } = req.params;
+  const userId = req.user.id;
+
+  const user = await User.findById(userId);
+  user.favourites.push(imageId);
+  await user.save();
+
+  const image = await Image.findById(imageId);
+  image.favouritesCount += 1;
+  await image.save();
+
+  res.status(200).json(user);
+};
+
 module.exports = {
   getAllImages,
   getImageById,
