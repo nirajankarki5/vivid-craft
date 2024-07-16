@@ -6,10 +6,12 @@ const {
   getImageById,
   deleteImage,
   updateImage,
+  createImage,
 } = require("../controllers/image");
 
 router.get("/", getAllImages);
 router.get("/:imageId", getImageById);
+router.post("/", createImage);
 router.delete("/:imageId", deleteImage);
 router.patch("/:imageId", updateImage);
 
