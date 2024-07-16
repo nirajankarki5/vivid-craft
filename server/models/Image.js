@@ -26,9 +26,9 @@ const ImageSchema = new mongoose.Schema(
         ],
         message: "{VALUE} is not supported",
       },
-      tags: {
-        type: [String],
-      },
+    },
+    tags: {
+      type: [String],
     },
   },
   { timestamps: true }
