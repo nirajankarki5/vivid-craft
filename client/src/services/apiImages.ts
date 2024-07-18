@@ -13,7 +13,7 @@ export async function getImages(
     }
     const data = await response.json();
 
-    if (response.status === 404) {
+    if (response.status !== 200) {
       throw new Error("An error occured");
     }
 

@@ -1,12 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Skeleton from "@mui/material/Skeleton";
 import ImageGrid from "../components/ImageGrid";
 import { NavLink, useParams } from "react-router-dom";
 import { getImages } from "../services/apiImages";
 import Error from "../pages/Error";
+import { useEffect } from "react";
 
 const Home: React.FC = () => {
   const { categoryName } = useParams<string>();
+  const queryClient = useQueryClient();
 
   const categories = [
     { name: "All", value: "all" },
@@ -24,7 +26,12 @@ const Home: React.FC = () => {
     queryFn: () => getImages(categoryName),
     staleTime: 0, // so that images are refetched. Otherwise catched data was shown before
   });
-  console.log(query);
+
+  useEffect(() => {
+    // invalidate the query when the category name changes
+    // it will fetch data again
+    queryClient.invalidateQueries({ queryKey: ["images"] });
+  }, [categoryName]);
 
   if (query.isLoading) {
     return (
