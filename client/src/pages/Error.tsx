@@ -6,7 +6,7 @@ const Error: React.FC = () => {
   }
   return (
     <div className="my-10 mt-[8rem] text-center text-gray-400">
-      <h1 className="mb-4 text-5xl font-medium">Error!!!</h1>
+      <h1 className="mb-2 text-6xl font-medium">Error!!!</h1>
       <p className="mb-4 text-lg">An error occured</p>
 
       <p>
@@ -15,7 +15,6 @@ const Error: React.FC = () => {
           home
         </Link>
       </p>
-      <br />
       <p>
         Or &nbsp;
         <button
