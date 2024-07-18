@@ -8,6 +8,25 @@ const getAllImages = async (req, res) => {
   res.status(200).json(images);
 };
 
+const getImageByCategory = async (req, res) => {
+  const { category } = req.params;
+
+  const categories = [
+    { name: "All", value: "all" },
+    { name: "Nature", value: "nature" },
+    { name: "Illustration", value: "illustration" },
+    { name: "Painting", value: "painting" },
+    { name: "Texture & Patterns", value: "texture-and-patterns" },
+    { name: "Fashion & Beauty", value: "fashion-and-beauty" },
+    { name: "Architecture & Interiors", value: "architecture-and-interiors" },
+    { name: "Food & Drink", value: "food-and-drink" },
+  ];
+  // getting name based on value (value comes from req.params)
+  const categoryName = categories.find((item) => item.value === category);
+  const images = await Image.find({ category: categoryName.name });
+  res.status(200).json(images);
+};
+
 const getImageById = async (req, res) => {
   const { imageId } = req.params;
   const image = await Image.findOne({ _id: imageId });
@@ -123,6 +142,7 @@ const removeUserFavourite = async (req, res) => {
 
 module.exports = {
   getAllImages,
+  getImageByCategory,
   getImageById,
   createImage,
   deleteImage,
