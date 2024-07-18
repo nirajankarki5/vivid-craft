@@ -74,7 +74,6 @@ const addFavourite = async (req, res) => {
 };
 
 const getUserFavourites = async (req, res) => {
-  console.log("HELLOOOOOOOOOOOOOOOOOO");
   const userId = req.user.id;
 
   // Here, populate('favourites') is used to replace the image IDs in the favourites array with the actual image documents.
@@ -95,6 +94,33 @@ const getUserFavourites = async (req, res) => {
   res.status(200).json(user.favourites);
 };
 
+const removeUserFavourite = async (req, res) => {
+  const userId = req.user.id;
+  const { imageId } = req.params;
+
+  const user = await User.findById(userId);
+
+  // Check if the image is in the favouries array
+  const imageIndex = user.favourites.indexOf(imageId);
+  if (imageIndex === -1) {
+    throw new CustomAPIError("Image not found in favurites", 404);
+  }
+
+  // Remove image from favourites
+  user.favourites.splice(imageIndex, 1);
+  await user.save();
+
+  // Updating image's favourite count
+  const image = await Image.findById(imageId);
+  if (image) {
+    // decrement the favouritesCount field of the Image document, ensuring that the count does not go below zero.
+    image.favouritesCount = Math.max(0, image.favouritesCount - 1);
+    await image.save();
+  }
+
+  res.status(200).json(user.favourites);
+};
+
 module.exports = {
   getAllImages,
   getImageById,
@@ -103,4 +129,5 @@ module.exports = {
   updateImage,
   addFavourite,
   getUserFavourites,
+  removeUserFavourite,
 };

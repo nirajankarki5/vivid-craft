@@ -10,6 +10,7 @@ const {
   createImage,
   addFavourite,
   getUserFavourites,
+  removeUserFavourite,
 } = require("../controllers/image");
 
 /*
@@ -25,5 +26,6 @@ router.delete("/:imageId", deleteImage);
 router.patch("/:imageId", updateImage);
 
 router.post("/favourite/:imageId", authMiddleware, addFavourite);
+router.delete("/favourite/:imageId", authMiddleware, removeUserFavourite);
 
 module.exports = router;
