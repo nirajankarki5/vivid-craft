@@ -11,6 +11,8 @@ const getAllImages = async (req, res) => {
 const getImageByCategory = async (req, res) => {
   const { category } = req.params;
 
+  let images;
+
   const categories = [
     { name: "All", value: "all" },
     { name: "Nature", value: "nature" },
@@ -21,9 +23,15 @@ const getImageByCategory = async (req, res) => {
     { name: "Architecture & Interiors", value: "architecture-and-interiors" },
     { name: "Food & Drink", value: "food-and-drink" },
   ];
-  // getting name based on value (value comes from req.params)
-  const categoryName = categories.find((item) => item.value === category);
-  const images = await Image.find({ category: categoryName.name });
+
+  if (category === "all") {
+    images = await Image.find({});
+  } else {
+    // getting category name based on value (value comes from req.params)
+    const categoryName = categories.find((item) => item.value === category);
+    images = await Image.find({ category: categoryName.name });
+  }
+
   res.status(200).json(images);
 };
 

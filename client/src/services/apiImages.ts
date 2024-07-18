@@ -5,12 +5,7 @@ export async function getImages(
   categoryName: string = "all",
 ): Promise<Image[]> {
   try {
-    let response;
-    if (categoryName === "all") {
-      response = await fetch(`${baseUrl}/image`);
-    } else {
-      response = await fetch(`${baseUrl}/image/category/${categoryName}`);
-    }
+    const response = await fetch(`${baseUrl}/image/category/${categoryName}`);
     const data = await response.json();
 
     if (response.status !== 200) {
