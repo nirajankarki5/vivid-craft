@@ -1,7 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "@mui/material/Skeleton";
 import ImageGrid from "../components/ImageGrid";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { getImages } from "../services/apiImages";
+import Error from "../pages/Error";
 
 const Home: React.FC = () => {
+  const { categoryName } = useParams<string>();
+
   const categories = [
     { name: "All", value: "all" },
     { name: "Nature", value: "nature" },
@@ -12,6 +18,34 @@ const Home: React.FC = () => {
     { name: "Architecture & Interiors", value: "architecture-and-interiors" },
     { name: "Food & Drink", value: "food-and-drink" },
   ];
+
+  const query = useQuery({
+    queryKey: ["images"],
+    queryFn: () => getImages(categoryName),
+    staleTime: 0, // so that images are refetched. Otherwise catched data was shown before
+  });
+  console.log(query);
+
+  if (query.isLoading) {
+    return (
+      <div className="mx-auto mt-5 grid grid-cols-1 gap-4 md:w-4/5 md:grid-cols-2 lg:w-2/3 lg:grid-cols-3 xl:w-5/6 2xl:w-[1400px]">
+        {/* This is done in order to display 6 skeleton loading screen */}
+
+        {Array.from({ length: 6 }, (_, i) => (
+          <Skeleton
+            key={i}
+            variant="rectangular"
+            animation="wave"
+            height={500}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  if (query.error) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -32,7 +66,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Created a new component that displays image in grid. Displays image according to the value i.e. category */}
-      <ImageGrid />
+      <ImageGrid imageList={query.data} />
     </>
   );
 };
