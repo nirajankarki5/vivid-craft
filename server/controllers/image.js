@@ -65,7 +65,7 @@ const addFavourite = async (req, res) => {
   user.favourites.push(mongoose.Types.ObjectId.createFromHexString(imageId)); // Ensure imageId is a valid string representation of an ObjectId
   await user.save();
 
-  //   Imcrementinf favourite count by 1
+  //   Incrementing favourite count by 1
   const image = await Image.findById(imageId);
   image.favouritesCount += 1;
   await image.save();
@@ -78,6 +78,18 @@ const getUserFavourites = async (req, res) => {
   const userId = req.user.id;
 
   // Here, populate('favourites') is used to replace the image IDs in the favourites array with the actual image documents.
+  // This is possible because the favourites array in the User schema contains references (ObjectIds) to documents in the Image collection.
+
+  /*
+  How populate Works
+  Define References in Schema: 
+    In your User schema, you define that the favourites field contains an array of ObjectIds that reference the Image model.
+  Use populate Method: 
+    When you query the User model and use the populate method on the favourites field, Mongoose will fetch the corresponding documents from the Image collection based on the ObjectIds stored in the favourites array.
+  Replace ObjectIds with Documents: 
+    The populate method then replaces the ObjectIds in the favourites array with the actual Image documents.
+  */
+
   const user = await User.findById(userId).populate("favourites");
 
   res.status(200).json(user.favourites);
