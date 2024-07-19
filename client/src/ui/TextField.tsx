@@ -1,10 +1,10 @@
-interface prop {
-  label: String;
+interface Prop {
+  label: string;
   type: string;
   placeholder: string;
 }
 
-const TextField: React.FC<prop> = ({ label, type, placeholder }) => {
+const TextField: React.FC<Prop> = ({ label, type, placeholder }) => {
   return (
     <>
       <label

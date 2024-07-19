@@ -5,21 +5,11 @@ import { NavLink, useParams } from "react-router-dom";
 import { getImages } from "../services/apiImages";
 import Error from "../pages/Error";
 import { useEffect } from "react";
+import categories from "../utils/categories";
 
 const Home: React.FC = () => {
   const { categoryName } = useParams<string>();
   const queryClient = useQueryClient();
-
-  const categories = [
-    { name: "All", value: "all" },
-    { name: "Nature", value: "nature" },
-    { name: "Illustration", value: "illustration" },
-    { name: "Painting", value: "painting" },
-    { name: "Texture & Patterns", value: "texture-and-patterns" },
-    { name: "Fashion & Beauty", value: "fashion-and-beauty" },
-    { name: "Architecture & Interiors", value: "architecture-and-interiors" },
-    { name: "Food & Drink", value: "food-and-drink" },
-  ];
 
   const query = useQuery({
     queryKey: ["images"],

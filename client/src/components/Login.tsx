@@ -2,12 +2,12 @@ import React, { Dispatch, SetStateAction } from "react";
 import TextField from "../ui/TextField";
 import Button from "../ui/Button";
 
-interface prop {
+interface Prop {
   isSignupVisible: boolean;
   setIsSignupVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-const Login: React.FC<prop> = ({ isSignupVisible, setIsSignupVisible }) => {
+const Login: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
   return (
     <div
       className={`${isSignupVisible ? "opacity-0" : "transition-all duration-500"}`}
