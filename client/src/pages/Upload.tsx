@@ -26,7 +26,7 @@ const Upload: React.FC = () => {
 
   return (
     <>
-      <h1 className="pt-4 text-center text-3xl font-medium text-gray-400">
+      <h1 className="pt-10 text-center text-3xl font-medium text-gray-400">
         Upload Image
       </h1>
       <form
@@ -36,6 +36,7 @@ const Upload: React.FC = () => {
         <input
           className="text-sm file:mr-5 file:cursor-pointer file:rounded-md file:bg-primary-color file:px-4 file:py-3 file:text-white file:shadow-none"
           type="file"
+          required={true}
           onChange={handleFileChange}
           accept=".jpg,.jpeg,.png"
           placeholder="Select an Image"
@@ -45,6 +46,7 @@ const Upload: React.FC = () => {
         <select
           id="category"
           name="category"
+          required={true}
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
           className="rounded-md border px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
