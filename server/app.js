@@ -9,6 +9,7 @@ const connectDB = require("./db/connect");
 // Router
 const userRoute = require("./routes/user");
 const imageRoute = require("./routes/image");
+const uploadRoute = require("./routes/uploadRoutes");
 
 // Import middlewares
 const notFound = require("./middleware/not-found");
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/user", userRoute);
 app.use("/api/image", imageRoute);
+app.use("/api", uploadRoute);
 
 app.use(notFound);
 app.use(errorHandler);
