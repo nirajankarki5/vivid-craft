@@ -1,12 +1,16 @@
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
 import { PiUploadSimple, PiHeartLight } from "react-icons/pi";
 import { FaRegUser } from "react-icons/fa6";
+import { MdLogout } from "react-icons/md";
 import { useState } from "react";
+import { clearToken } from "../utils/auth";
 
 const UserProfile: React.FC = () => {
   const [value, setValue] = useState<number>(0);
+  const navigate = useNavigate();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -28,10 +32,21 @@ const UserProfile: React.FC = () => {
           </p>
           <p>email@gmail.com</p>
 
-          <p className="w-80 pt-2 text-center text-sm text-gray-400 md:w-auto md:pt-5 md:text-left md:text-base">
+          <p className="w-80 py-2 text-center text-sm text-gray-400 md:w-auto md:pt-5 md:text-left md:text-base">
             Get gorgeous, high-quality pictures that User has handpicked for
             free.
           </p>
+
+          <button
+            onClick={() => {
+              clearToken();
+              navigate("/");
+            }}
+            className="mt-2 rounded-md border-none px-4 py-2 text-lg text-red-500 transition-all duration-150 hover:bg-red-500 hover:text-white"
+          >
+            Log&nbsp;out &nbsp;
+            <MdLogout className="text-md inline" />
+          </button>
         </section>
       </div>
 
