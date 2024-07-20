@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, useState, ReactNode, useEffect } from "react";
 
 interface AuthContextValue {
   isLoggedIn: boolean;
@@ -6,7 +6,7 @@ interface AuthContextValue {
 }
 
 export const AuthContext = createContext<AuthContextValue>({
-  isLoggedIn: true,
+  isLoggedIn: false,
   setIsLoggedIn: () => {},
 });
 
@@ -15,7 +15,16 @@ interface Prop {
 }
 
 export const AuthProvider: React.FC<Prop> = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const fetchUser = () => {
+    // Add logic to get user and set user to true
+    setIsLoggedIn(true);
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
