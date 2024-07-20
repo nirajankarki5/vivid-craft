@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { FaMagnifyingGlass, FaBars } from "react-icons/fa6";
 import { PiUploadSimple } from "react-icons/pi";
+import { isLoggedIn } from "../utils/auth";
 
 const Navbar: React.FC = () => {
   const [isNavlinkShown, setIsNavlinkShown] = useState<boolean>(false);
@@ -59,7 +60,7 @@ const Navbar: React.FC = () => {
       </form>
 
       <ul
-        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col flex-wrap items-center py-6" : "hidden"} gap-6 bg-white sm:flex md:gap-8`}
+        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col flex-wrap items-center py-6" : "hidden"}  bg-white sm:flex md:gap-4 lg:gap-6`}
       >
         <li className="flex items-center">
           <Link
@@ -80,15 +81,23 @@ const Navbar: React.FC = () => {
             <PiUploadSimple className="text-xl" />
           </Link>
         </li>
-        <li className="flex items-center">
+        {isLoggedIn() ? (
           <Link
-            className="rounded-sm bg-gray-600 px-5 py-2 text-white transition-all duration-200 hover:bg-gray-700"
-            to="/auth"
+            className="rounded-sm border-[1px] border-gray-500 px-3 py-2 transition-all duration-200 hover:bg-gray-200"
+            to="/my-profile"
           >
-            Log&nbsp;in
+            My&nbsp;profile
           </Link>
-        </li>
-        {/* <Link to="/signup">Sign&nbsp;up</Link> */}
+        ) : (
+          <li className="flex items-center">
+            <Link
+              className="rounded-sm bg-gray-600 px-5 py-2 text-white transition-all duration-200 hover:bg-gray-700"
+              to="/auth"
+            >
+              Log&nbsp;in
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

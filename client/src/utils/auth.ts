@@ -1,7 +1,11 @@
 import { jwtDecode } from "jwt-decode";
 
-export const setToken = (token: string): void => {
-  localStorage.setItem("token", token);
+export const setToken = (token: string | undefined): void => {
+  if (token) {
+    localStorage.setItem("token", token);
+  } else {
+    console.log("No token provided");
+  }
 };
 
 export const getToken = (): string | null => {

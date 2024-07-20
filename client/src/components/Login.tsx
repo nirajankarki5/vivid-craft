@@ -1,10 +1,20 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import TextField from "../ui/TextField";
 import Button from "../ui/Button";
+import { login } from "../services/apiUser";
+import toast from "react-hot-toast";
+import { setToken } from "../utils/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Prop {
   isSignupVisible: boolean;
   setIsSignupVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+interface loginBody {
+  email: string;
+  password: string;
 }
 
 const Login: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
@@ -12,9 +22,31 @@ const Login: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const mutation = useMutation({
+    mutationFn: (user: loginBody) => login(user),
+    onSuccess: (data) => {
+      setToken(data?.token);
+      navigate(from, { replace: true });
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
-    console.log(username, email, password);
+
+    try {
+      await mutation.mutate({ email, password });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -53,7 +85,9 @@ const Login: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
           required={true}
         />
 
-        <Button type="submit">Log in </Button>
+        <Button type="submit" disabled={false}>
+          Log in
+        </Button>
       </form>
 
       <p className="text-center font-semibold md:mt-4">
