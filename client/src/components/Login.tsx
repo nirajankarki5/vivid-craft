@@ -18,7 +18,7 @@ interface loginBody {
 }
 
 const Login: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
-  const [username, setUsername] = useState<string>("");
+  // const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -60,14 +60,14 @@ const Login: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
         Please enter your details
       </p>
       <form onSubmit={handleSubmit} className="px-4 sm:px-14 md:px-8 xl:px-24">
-        <TextField
+        {/* <TextField
           label="Username"
           type="text"
           placeholder="Enter your username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required={true}
-        />
+        /> */}
         <TextField
           label="Email"
           type="email"

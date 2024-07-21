@@ -22,3 +22,24 @@ export async function login(user: {
     throw error;
   }
 }
+
+export async function getUser(token: string | null): Promise<User> {
+  if (!token) {
+    throw new Error("Token not provided");
+  }
+
+  try {
+    const response = await fetch(`${baseUrl}/user/myaccount`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data: User = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
