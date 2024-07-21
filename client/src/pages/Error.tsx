@@ -16,7 +16,7 @@ const Error: React.FC = () => {
         </Link>
       </p>
       <p>
-        Or &nbsp;
+        or &nbsp;
         <button
           onClick={refreshPage}
           className="border-none bg-white text-lg text-blue-500 underline"

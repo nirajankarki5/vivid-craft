@@ -1,10 +1,26 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import TextField from "../ui/TextField";
 import Button from "../ui/Button";
+import { useMutation } from "@tanstack/react-query";
+import { login, signup } from "../services/apiUser";
+import toast, { Toaster } from "react-hot-toast";
+import { setToken } from "../utils/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Prop {
   isSignupVisible: boolean;
   setIsSignupVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+interface signupBody {
+  username: string;
+  email: string;
+  password: string;
+}
+
+interface loginBody {
+  email: string;
+  password: string;
 }
 
 const Signup: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
@@ -14,14 +30,47 @@ const Signup: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
   const [repassword, setRepassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const mutation = useMutation({
+    mutationFn: (user: signupBody) => signup(user),
+    onSuccess: () => {
+      // login when sign up is successful
+      loginMutation.mutate({ email, password });
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  // for logging in
+  const loginMutation = useMutation({
+    mutationFn: (user: loginBody) => login(user),
+    onSuccess: (data) => {
+      setToken(data?.token);
+      navigate(from, { replace: true });
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
 
     if (password !== repassword) {
       setError("Passwords do not match");
       return;
     }
-    console.log(username, email, password, repassword);
+    try {
+      await mutation.mutate({ username, email, password });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -85,6 +134,8 @@ const Signup: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
           Log in
         </button>{" "}
       </p>
+
+      <Toaster />
     </div>
   );
 };

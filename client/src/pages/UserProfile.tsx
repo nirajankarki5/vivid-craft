@@ -23,6 +23,7 @@ const UserProfile: React.FC = () => {
 
   const token = getToken();
 
+  // to get user details
   const { data, error, isLoading } = useQuery({
     queryKey: ["user", token],
     queryFn: ({ queryKey }) => {
@@ -31,6 +32,7 @@ const UserProfile: React.FC = () => {
     },
   });
 
+  // to get user uploads and favourite images based on url
   const uploadAndFavQuery = useQuery({
     queryKey: ["images", url, token],
     queryFn: ({ queryKey }) => {
@@ -40,12 +42,13 @@ const UserProfile: React.FC = () => {
     },
   });
 
-  // Change url based on what tab user has selected
+  // Change url based on what tab the user has selected
   useEffect(() => {
     const newUrl = value === 0 ? "/user/uploads" : "/favourite";
     setUrl(newUrl);
 
-    // invalidate query so that new image is fetched again based on url
+    // invalidate query when tab(value) is changed,
+    // so that new image is fetched again based on url
     queryClient.invalidateQueries({ queryKey: ["images", url, token] });
   }, [value]);
 
@@ -77,12 +80,12 @@ const UserProfile: React.FC = () => {
 
         <section className="mb-5 mt-2 text-center md:my-auto md:text-left">
           <p className="text-md mb-1 font-semibold text-gray-800 md:text-2xl">
-            Welcome,&nbsp;{data?.username}
+            @{data?.username}
           </p>
           <p>{data?.email}</p>
 
           <p className="w-80 py-2 text-center text-sm text-gray-400 md:w-auto md:pt-5 md:text-left md:text-base">
-            Get gorgeous, high-quality pictures that User has handpicked for
+            Get gorgeous, high-quality pictures that Users have handpicked for
             free.
           </p>
 

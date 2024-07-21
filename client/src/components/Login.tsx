@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import TextField from "../ui/TextField";
 import Button from "../ui/Button";
 import { login } from "../services/apiUser";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { setToken } from "../utils/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -99,6 +99,7 @@ const Login: React.FC<Prop> = ({ isSignupVisible, setIsSignupVisible }) => {
           Sign up
         </button>
       </p>
+      <Toaster />
     </div>
   );
 };
