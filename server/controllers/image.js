@@ -100,6 +100,13 @@ const addFavourite = async (req, res) => {
   res.status(200).json(user);
 };
 
+const getUserUploads = async (req, res) => {
+  const userId = req.user.id;
+  const images = await Image.find({ userId: userId });
+
+  res.status(200).json(images);
+};
+
 const getUserFavourites = async (req, res) => {
   const userId = req.user.id;
 
@@ -156,6 +163,7 @@ module.exports = {
   deleteImage,
   updateImage,
   addFavourite,
+  getUserUploads,
   getUserFavourites,
   removeUserFavourite,
 };

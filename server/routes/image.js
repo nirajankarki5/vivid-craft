@@ -12,12 +12,14 @@ const {
   getUserFavourites,
   removeUserFavourite,
   getImageByCategory,
+  getUserUploads,
 } = require("../controllers/image");
 
 /*
   This route is in beginning because when I kept it after (router.get("/:imageId", getImageById);), 
   then it put "favourite" in place of imageID and tried to fetch image by ID and we got an error
 */
+router.get("/user/uploads", authMiddleware, getUserUploads);
 router.get("/favourite", authMiddleware, getUserFavourites);
 
 router.get("/", getAllImages);
