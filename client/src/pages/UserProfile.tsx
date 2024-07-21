@@ -5,16 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { PiUploadSimple, PiHeartLight } from "react-icons/pi";
 import { FaRegUser } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { clearToken, getToken } from "../utils/auth";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUser } from "../services/apiUser";
 import Loading from "../components/Loading";
 import Error from "./Error";
+import { getUploadsAndFavouriteImages } from "../services/apiImages";
+import ImageGrid from "../components/ImageGrid";
 
 const UserProfile: React.FC = () => {
   const [value, setValue] = useState<number>(0);
+  const [url, setUrl] = useState<string>("/user/uploads");
+
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const token = getToken();
 
@@ -26,7 +31,23 @@ const UserProfile: React.FC = () => {
     },
   });
 
-  console.log(data);
+  const uploadAndFavQuery = useQuery({
+    queryKey: ["images", url, token],
+    queryFn: ({ queryKey }) => {
+      const url = queryKey[1] || "/user/uploads";
+      const token = queryKey[2];
+      return getUploadsAndFavouriteImages(url, token);
+    },
+  });
+
+  // Change url based on what tab user has selected
+  useEffect(() => {
+    const newUrl = value === 0 ? "/user/uploads" : "/favourite";
+    setUrl(newUrl);
+
+    // invalidate query so that new image is fetched again based on url
+    queryClient.invalidateQueries({ queryKey: ["images", url, token] });
+  }, [value]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -109,10 +130,10 @@ const UserProfile: React.FC = () => {
           </Tabs>
         </Box>
 
-        <p className="mt-16 text-center text-2xl text-gray-400">
-          {value === 0 ? "My Images" : "My Favourites"}
-        </p>
+        {uploadAndFavQuery.isLoading && <Loading />}
+
         {/* Image Grid Goes here */}
+        <ImageGrid imageList={uploadAndFavQuery.data} />
       </div>
     </>
   );
