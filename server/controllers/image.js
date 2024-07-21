@@ -46,7 +46,7 @@ const getImageById = async (req, res) => {
 };
 
 const createImage = async (req, res) => {
-  const image = await Image.create(req.body);
+  const image = await Image.create({ userId: req.user.id, ...req.body });
   res.status(201).json(image);
 };
 

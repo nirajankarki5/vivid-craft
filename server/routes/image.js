@@ -25,7 +25,7 @@ router.get("/favourite", authMiddleware, getUserFavourites);
 router.get("/", getAllImages);
 router.get("/category/:category", getImageByCategory);
 router.get("/:imageId", getImageById);
-router.post("/", createImage);
+router.post("/", authMiddleware, createImage);
 router.delete("/:imageId", deleteImage);
 router.patch("/:imageId", updateImage);
 

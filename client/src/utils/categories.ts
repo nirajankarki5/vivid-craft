@@ -9,4 +9,15 @@ const categories = [
   { name: "Food & Drink", value: "food-and-drink" },
 ];
 
+export const categoryNames = [
+  "All",
+  "Nature",
+  "Illustration",
+  "Painting",
+  "Texture & Patterns",
+  "Fashion & Beauty",
+  "Architecture & Interiors",
+  "Food & Drink",
+];
+
 export default categories;

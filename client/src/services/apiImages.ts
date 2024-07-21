@@ -46,3 +46,73 @@ export async function getUploadsAndFavouriteImages(
     throw error;
   }
 }
+
+export async function getPresignedUrl(
+  token: string | null,
+): Promise<{ key: string; url: string }> {
+  if (!token) {
+    throw new Error("Token not provided");
+  }
+
+  try {
+    const response = await fetch(`${baseUrl}/upload`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function uploadImage(url: string, file: File) {
+  try {
+    await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": file.type,
+      },
+      body: file,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function createImage(
+  imageType: {
+    imageUrl: string;
+    category: string;
+    tags: string[];
+  },
+  token: string | null,
+): Promise<Image> {
+  if (!token) {
+    throw new Error("Token not provided");
+  }
+
+  try {
+    const response = await fetch(`${baseUrl}/image`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(imageType),
+    });
+
+    const data: Image = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
