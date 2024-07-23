@@ -6,6 +6,7 @@ import { useMediaQuery } from "@mui/material";
 
 import ImageList from "@mui/material/ImageList";
 import Image from "../types/Image";
+import { FaHeart } from "react-icons/fa";
 
 interface Prop {
   imageList: Image[] | undefined;
@@ -49,16 +50,30 @@ const ImageGrid: React.FC<Prop> = ({ imageList }) => {
       gap={8}
     >
       {imageList.map((item) => (
-        <Link to={`/image/${item._id}`} key={item._id}>
-          <ImageListItem>
+        <ImageListItem className="group relative overflow-hidden">
+          <Link to={`/image/${item._id}`} key={item._id}>
             <img
               srcSet={`${item.imageUrl}?w=248&fit=crop&auto=format&dpr=2 2x`}
               src={`${item.imageUrl}?w=248&fit=crop&auto=format`}
               // alt={item.title}
               loading="lazy"
             />
-          </ImageListItem>
-        </Link>
+
+            {/* Overlay (Dark on over) */}
+            {/* Here, group-hover means when hovering to group (group is className in ImageListItem) */}
+            <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 ease-in-out md:group-hover:opacity-30"></div>
+          </Link>
+
+          <div className="bottom-0 left-0 z-50 flex w-full transform items-center justify-between px-4 py-3 shadow-sm transition-all duration-300 ease-in-out md:absolute md:translate-y-full md:shadow-none md:group-hover:translate-y-0">
+            <button className="flex items-center gap-2 rounded-md border-[1px] border-gray-400 bg-white p-2 px-2">
+              <FaHeart className="text-xl text-gray-400" />
+              <span>{item.favouritesCount}</span>
+            </button>
+            <button className="rounded-md border-[1px] border-gray-400 bg-white p-2 px-3 text-sm text-gray-500">
+              Download
+            </button>
+          </div>
+        </ImageListItem>
       ))}
     </ImageList>
   );
