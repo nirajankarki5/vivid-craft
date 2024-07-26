@@ -3,7 +3,7 @@ import { FaRegUser } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 interface Prop {
-  userId: string;
+  userId: string | undefined;
 }
 
 const ProfileCard: React.FC<Prop> = ({ userId }) => {

@@ -19,6 +19,24 @@ export async function getImages(
   }
 }
 
+export async function getImageById(id: string | undefined): Promise<Image> {
+  if (!id) {
+    throw new Error("Image ID is not provided");
+  }
+  try {
+    const response = await fetch(`${baseUrl}/image/${id}`);
+    const data: Image = await response.json();
+
+    if (response.status !== 200) {
+      throw new Error("Error occured while fetching image");
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export async function getUploadsAndFavouriteImages(
   url: string,
   token: string | null,
