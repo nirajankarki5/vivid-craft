@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const Image = require("../models/Image");
 const User = require("../models/User");
 const CustomAPIError = require("../errors/custom-error");
 
@@ -35,11 +35,19 @@ const getUser = async (req, res) => {
 const getUserById = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findOne({ _id: userId });
+  const images = await Image.find({ userId: userId });
   if (!user) {
     throw new CustomAPIError("User not found", 404);
   }
 
-  res.status(200).json(user);
+  res
+    .status(200)
+    .json({
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      uploads: images,
+    });
 };
 
 const login = async (req, res) => {

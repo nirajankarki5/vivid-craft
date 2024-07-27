@@ -160,7 +160,9 @@ export async function addToFavourite(body: {
     await response.json();
 
     if (response.status === 400 && body.method !== "DELETE") {
-      throw new Error("Image is already in favourite list");
+      throw new Error(
+        "Image is already in favourite list. Go to your profile to remove it",
+      );
     }
 
     // to show success message (deleted or added)
