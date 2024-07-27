@@ -46,6 +46,24 @@ export async function getUser(token: string | null): Promise<User> {
   }
 }
 
+export async function getUserById(userId: string | undefined): Promise<User> {
+  if (!userId) {
+    throw new Error("User ID is not present");
+  }
+  try {
+    const response = await fetch(`${baseUrl}/user/${userId}`);
+    const data: User = await response.json();
+
+    if (response.status === 404) {
+      return { username: "Anonymous", _id: "...", email: "unknown" };
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export async function signup(user: {
   username: string;
   email: string;
