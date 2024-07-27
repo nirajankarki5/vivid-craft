@@ -32,6 +32,16 @@ const getUser = async (req, res) => {
   res.status(200).json(user);
 };
 
+const getUserById = async (req, res) => {
+  const { userId } = req.params;
+  const user = await User.findOne({ _id: userId });
+  if (!user) {
+    throw new CustomAPIError("User not found", 404);
+  }
+
+  res.status(200).json(user);
+};
+
 const login = async (req, res) => {
   //   const { email, password } = req.body;
 
@@ -65,4 +75,4 @@ const logout = async (req, res) => {
   res.status(200).json({ msg: "You have been signed out" });
 };
 
-module.exports = { createUser, getUser, login, logout };
+module.exports = { createUser, getUser, getUserById, login, logout };

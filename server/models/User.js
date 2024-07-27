@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
 
 // pre middleware function (runs before saving the document)
 UserSchema.pre("save", async function (next) {
-  this.password = bcrypt.hashSync(this.password, 8);
+  this.password = bcrypt.hashSync(this.password, 10);
   next();
 });
 
