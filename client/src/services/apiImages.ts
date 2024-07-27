@@ -134,3 +134,39 @@ export async function createImage(
     throw error;
   }
 }
+
+export async function addToFavourite(body: {
+  method: string;
+  imageId: string | undefined;
+  token: string | null;
+}) {
+  if (!body.imageId) {
+    throw new Error("Image ID is invalid");
+  }
+  if (!body.token) {
+    throw new Error("Please login first");
+  }
+
+  console.log(body.method);
+
+  try {
+    const response = await fetch(`${baseUrl}/image/favourite/${body.imageId}`, {
+      method: body.method,
+      headers: {
+        Authorization: `Bearer ${body.token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    await response.json();
+
+    if (response.status === 400 && body.method !== "DELETE") {
+      throw new Error("Image is already in favourite list");
+    }
+
+    // to show success message (deleted or added)
+    return { status: "success", method: body.method };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

@@ -7,6 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getImageById } from "../services/apiImages";
 import Loading from "../components/Loading";
 import Error from "./Error";
+import { Toaster } from "react-hot-toast";
+import useAddToFav from "../hooks/useAddToFav";
 
 interface RouteParams {
   imageId: string;
@@ -20,6 +22,21 @@ const SingleImage: React.FC = () => {
     queryKey: ["image", imageId],
     queryFn: () => getImageById(imageId),
   });
+
+  const { mutation } = useAddToFav();
+  // const mutation = useMutation({
+  //   mutationFn: () => addToFavourite({ imageId: imageId, token: getToken() }),
+  //   onSuccess: () => {
+  //     toast.success("Image added to favourites");
+  //   },
+  //   onError: (err) => {
+  //     toast.error(err.message);
+  //   },
+  // });
+
+  const handleAddToFav = () => {
+    mutation.mutate({ method: "POST", imageId: imageId });
+  };
 
   if (error) {
     return <Error />;
@@ -43,7 +60,10 @@ const SingleImage: React.FC = () => {
           <ProfileCard userId={data?.userId} />
 
           <aside className="flex items-center justify-between gap-4 pt-3 md:pt-0">
-            <button className="flex items-center gap-2 rounded-md border-[1px] border-gray-400 bg-white p-2 px-2">
+            <button
+              onClick={handleAddToFav}
+              className="flex items-center gap-2 rounded-md border-[1px] border-gray-400 bg-white p-2 px-2"
+            >
               <FaHeart className="text-xl text-gray-400" />
               <span>{data?.favouritesCount}</span>
             </button>
@@ -66,8 +86,10 @@ const SingleImage: React.FC = () => {
         </button>
 
         <div className="mt-8 flex flex-wrap gap-2">
-          {data?.tags.map((tag) => (
-            <div className="rounded-md bg-gray-200 p-2 text-sm">{tag}</div>
+          {data?.tags.map((tag, index) => (
+            <div key={index} className="rounded-md bg-gray-200 p-2 text-sm">
+              {tag}
+            </div>
           ))}
         </div>
 
@@ -86,6 +108,7 @@ const SingleImage: React.FC = () => {
           </li>
         </ul>
       </div>
+      <Toaster />
     </div>
   );
 };
