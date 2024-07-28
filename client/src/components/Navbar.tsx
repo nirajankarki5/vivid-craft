@@ -31,10 +31,7 @@ const Navbar: React.FC = () => {
   }, [prevScrollpos]);
 
   return (
-    <nav
-      style={{ top: `${top}px` }}
-      className="transition-top fixed top-0 z-50 flex h-20 w-full items-center justify-between gap-6 border-b-gray-100 bg-white px-4 duration-300 sm:px-8 md:gap-10 lg:gap-14"
-    >
+    <nav style={{ top: `${top}px` }}>
       <Link
         to={"/"}
         className="flex items-center gap-2 font-serif text-2xl font-semibold text-[#555]"
@@ -60,7 +57,7 @@ const Navbar: React.FC = () => {
       </form>
 
       <ul
-        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col flex-wrap items-center py-6" : "hidden"}  bg-white sm:flex md:gap-4 lg:gap-6`}
+        className={`${isNavlinkShown ? "absolute left-0 top-[7.5rem] flex w-full flex-col flex-wrap items-center gap-4 py-6" : "hidden"}  bg-white sm:flex md:gap-4 lg:gap-6`}
       >
         <li className="flex items-center">
           <Link

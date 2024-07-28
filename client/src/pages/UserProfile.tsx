@@ -58,7 +58,7 @@ const UserProfile: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="absolute left-0 top-0 flex h-screen w-screen items-center justify-center">
+      <div className="center">
         <Loading />
       </div>
     );

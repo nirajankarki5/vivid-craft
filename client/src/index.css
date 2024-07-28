@@ -24,3 +24,16 @@
 
 @tailwind components;
 @tailwind utilities;
+
+/********************** STYLES *********************/
+
+/* Navbar */
+nav {
+  @apply fixed top-0 z-50 flex h-20 w-full items-center justify-between gap-6 border-b-gray-100 bg-white px-4 duration-300 sm:px-8 md:gap-10 lg:gap-14;
+}
+
+/* UI */
+/* to put the content in center */
+.center {
+  @apply absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center;
+}

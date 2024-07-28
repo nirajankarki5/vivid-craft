@@ -44,7 +44,7 @@ const SingleImage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center">
+      <div className="center">
         <Loading />
       </div>
     );
