@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getImageById } from "../services/apiImages";
 import Loading from "../components/Loading";
 import Error from "./Error";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import useAddToFav from "../hooks/useAddToFav";
 
 interface RouteParams {
@@ -80,7 +80,13 @@ const SingleImage: React.FC = () => {
           alt={data?._id}
         />
 
-        <button className="flex items-center gap-1 rounded-md border-[1px] border-gray-400 bg-white p-2 text-sm text-gray-500">
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.href);
+            toast.success("Link copied to clipboard");
+          }}
+          className="flex items-center gap-1 rounded-md border-[1px] border-gray-400 bg-white p-2 text-sm text-gray-500"
+        >
           <RiShareForwardFill className="text-2xl " />
           <span>Share</span>
         </button>
