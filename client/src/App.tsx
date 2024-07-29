@@ -11,6 +11,7 @@ import UserProfile from "./pages/UserProfile";
 import About from "./pages/About";
 import Upload from "./pages/Upload";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import User from "./pages/User";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,7 +31,7 @@ function App() {
             <Route path="c/:categoryName" element={<Home />} />
             <Route path="search" element={<Search />} />
             <Route path="image/:imageId" element={<SingleImage />} />
-            <Route path="user/:username" element={<SingleImage />} />
+            <Route path="user/:username" element={<User />} />
             <Route path="about" element={<About />} />
 
             {/* Protected Routes */}
