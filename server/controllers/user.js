@@ -40,14 +40,28 @@ const getUserById = async (req, res) => {
     throw new CustomAPIError("User not found", 404);
   }
 
-  res
-    .status(200)
-    .json({
-      _id: user._id,
-      username: user.username,
-      email: user.email,
-      uploads: images,
-    });
+  res.status(200).json({
+    _id: user._id,
+    username: user.username,
+    email: user.email,
+    uploads: images,
+  });
+};
+
+const getUserByUsername = async (req, res) => {
+  const { username } = req.params;
+  const user = await User.findOne({ username: username });
+  const images = await Image.find({ userId: user._id });
+  if (!user) {
+    throw new CustomAPIError("User not found", 404);
+  }
+
+  res.status(200).json({
+    _id: user._id,
+    username: user.username,
+    email: user.email,
+    uploads: images,
+  });
 };
 
 const login = async (req, res) => {
@@ -83,4 +97,11 @@ const logout = async (req, res) => {
   res.status(200).json({ msg: "You have been signed out" });
 };
 
-module.exports = { createUser, getUser, getUserById, login, logout };
+module.exports = {
+  createUser,
+  getUser,
+  getUserByUsername,
+  getUserById,
+  login,
+  logout,
+};

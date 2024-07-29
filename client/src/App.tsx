@@ -30,6 +30,7 @@ function App() {
             <Route path="c/:categoryName" element={<Home />} />
             <Route path="search" element={<Search />} />
             <Route path="image/:imageId" element={<SingleImage />} />
+            <Route path="user/:username" element={<SingleImage />} />
             <Route path="about" element={<About />} />
 
             {/* Protected Routes */}
