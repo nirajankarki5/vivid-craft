@@ -64,6 +64,26 @@ export async function getUserById(userId: string | undefined): Promise<User> {
   }
 }
 
+export async function getUserByUsername(
+  username: string | undefined,
+): Promise<User> {
+  if (!username) {
+    throw new Error("Username is not present");
+  }
+  try {
+    const response = await fetch(`${baseUrl}/user/username/${username}`);
+    const data: User = await response.json();
+
+    if (response.status === 404) {
+      return { username: "Anonymous", _id: "...", email: "unknown" };
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export async function signup(user: {
   username: string;
   email: string;
