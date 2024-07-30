@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "build": "babel src -d lib",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nirajan Karki",
@@ -24,10 +24,6 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.8",
-    "@babel/core": "^7.25.2",
-    "nodemon": "^3.1.4",
-    "webpack": "^5.93.0",
-    "webpack-cli": "^5.1.4"
+    "nodemon": "^3.1.4"
   }
 }
