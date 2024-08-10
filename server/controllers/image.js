@@ -38,7 +38,7 @@ const getImageByCategory = async (req, res) => {
 const getImageSearch = async (req, res) => {
   const { tag } = req.query;
 
-  const images = await Image.find({ tags: tag });
+  const images = await Image.find({ tags: { $regex: tag, $options: "i" } });
   res.status(200).json(images);
 };
 
