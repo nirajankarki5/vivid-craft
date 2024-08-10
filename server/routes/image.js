@@ -13,6 +13,7 @@ const {
   removeUserFavourite,
   getImageByCategory,
   getUserUploads,
+  getImageSearch,
 } = require("../controllers/image");
 
 /*
@@ -24,6 +25,7 @@ router.get("/favourite", authMiddleware, getUserFavourites);
 
 router.get("/", getAllImages);
 router.get("/category/:category", getImageByCategory);
+router.get("/search", getImageSearch);
 router.get("/:imageId", getImageById);
 router.post("/", authMiddleware, createImage);
 router.delete("/:imageId", deleteImage);

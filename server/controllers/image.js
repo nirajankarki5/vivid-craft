@@ -35,6 +35,13 @@ const getImageByCategory = async (req, res) => {
   res.status(200).json(images);
 };
 
+const getImageSearch = async (req, res) => {
+  const { tag } = req.query;
+
+  const images = await Image.find({ tags: tag });
+  res.status(200).json(images);
+};
+
 const getImageById = async (req, res) => {
   const { imageId } = req.params;
   const image = await Image.findOne({ _id: imageId });
@@ -158,6 +165,7 @@ const removeUserFavourite = async (req, res) => {
 module.exports = {
   getAllImages,
   getImageByCategory,
+  getImageSearch,
   getImageById,
   createImage,
   deleteImage,
