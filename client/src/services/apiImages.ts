@@ -19,6 +19,25 @@ export async function getImages(
   }
 }
 
+export async function getSearchImages(tag: string | null): Promise<Image[]> {
+  if (!tag) {
+    throw new Error("Please enter search data");
+  }
+  try {
+    const response = await fetch(`${baseUrl}/image/search?tag=${tag}`);
+    const data = await response.json();
+
+    if (response.status !== 200) {
+      throw new Error("An error occured");
+    }
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export async function getImageById(id: string | undefined): Promise<Image> {
   if (!id) {
     throw new Error("Image ID is not provided");

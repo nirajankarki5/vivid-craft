@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { FaMagnifyingGlass, FaBars } from "react-icons/fa6";
 import { PiUploadSimple } from "react-icons/pi";
 import { isLoggedIn } from "../utils/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [isNavlinkShown, setIsNavlinkShown] = useState<boolean>(false);
   const [prevScrollpos, setPrevScrollpos] = useState<number>(
     window.pageYOffset,
   );
   const [top, setTop] = useState<number>(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Make navbar hide and appear when user scrolls down
@@ -30,6 +34,16 @@ const Navbar: React.FC = () => {
     };
   }, [prevScrollpos]);
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!searchTerm) {
+      toast.error("Please enter a search term");
+      return;
+    }
+    navigate("/search?tag=" + searchTerm);
+  };
+
   return (
     <nav style={{ top: `${top}px` }}>
       <Link
@@ -46,6 +60,7 @@ const Navbar: React.FC = () => {
       />
 
       <form
+        onSubmit={handleSubmit}
         className={`${isNavlinkShown ? "absolute left-0 top-16 flex h-14" : "hidden"} w-full items-center gap-4 bg-white px-4 sm:flex sm:h-10 lg:h-12 lg:w-[50rem]`}
       >
         <FaMagnifyingGlass className="text-gray-400" />
@@ -53,6 +68,8 @@ const Navbar: React.FC = () => {
           className="h-full w-full focus:border-b-[1px] focus:border-gray-400 focus:outline-none"
           type="text"
           placeholder="Search image..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
 
@@ -96,6 +113,8 @@ const Navbar: React.FC = () => {
           </li>
         )}
       </ul>
+
+      <Toaster />
     </nav>
   );
 };
