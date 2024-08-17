@@ -40,7 +40,7 @@ const ProfileCard: React.FC<Prop> = ({ userId }) => {
         <h2 className="font-semibold leading-4 group-hover:underline group-hover:underline-offset-2">
           {data?.username}
         </h2>
-        <p className="text-sm text-gray-400">follow</p>
+        <p className="text-sm text-gray-400">view user</p>
       </div>
     </Link>
   );

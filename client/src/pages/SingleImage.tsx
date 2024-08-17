@@ -7,8 +7,9 @@ import { useQuery } from "@tanstack/react-query";
 import { getImageById } from "../services/apiImages";
 import Loading from "../components/Loading";
 import Error from "./Error";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import useAddToFav from "../hooks/useAddToFav";
+import { saveAs } from "file-saver";
 
 interface RouteParams {
   imageId: string;
@@ -67,10 +68,15 @@ const SingleImage: React.FC = () => {
               <FaHeart className="text-xl text-gray-400" />
               <span>{data?.favouritesCount}</span>
             </button>
-            <button className="flex items-center gap-1 rounded-md bg-green-600 p-2 text-sm text-white hover:bg-green-700">
-              <span>Download</span>
-              <HiDownload className="text-2xl" />
-            </button>
+            {data?.imageUrl && (
+              <button
+                onClick={() => saveAs(data?.imageUrl, `image-${data._id}.jpg`)}
+                className="flex items-center gap-1 rounded-md bg-green-600 p-2 text-sm text-white hover:bg-green-700"
+              >
+                <span>Download</span>
+                <HiDownload className="text-2xl" />
+              </button>
+            )}
           </aside>
         </div>
 

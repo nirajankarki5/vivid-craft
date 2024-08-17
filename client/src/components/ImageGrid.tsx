@@ -11,6 +11,7 @@ import { IoMdHeartDislike } from "react-icons/io";
 
 import useAddToFav from "../hooks/useAddToFav";
 import { Toaster } from "react-hot-toast";
+import { saveAs } from "file-saver";
 
 interface Prop {
   imageList: Image[] | undefined;
@@ -96,7 +97,10 @@ const ImageGrid: React.FC<Prop> = ({ imageList }) => {
                 )}
                 <span>{item.favouritesCount}</span>
               </button>
-              <button className="rounded-md border-[1px] border-gray-400 bg-white p-2 px-3 text-sm text-gray-500">
+              <button
+                onClick={() => saveAs(item.imageUrl, `image-${item._id}.jpg`)}
+                className="rounded-md border-[1px] border-gray-400 bg-white p-2 px-3 text-sm text-gray-500"
+              >
                 Download
               </button>
             </div>
