@@ -1,0 +1,458 @@
+{
+	"info": {
+		"_postman_id": "478a2c6b-aa27-474f-9f6b-ab4ba98922d5",
+		"name": "Vivid Craft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29311502"
+	},
+	"item": [
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "Get image by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/image/6696f0329b940018940309f2",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"6696f0329b940018940309f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all images",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/image",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE image by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/image/66969b95d5679cc0854fe311",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"66969b95d5679cc0854fe311"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Image",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Painting\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/image/6696a09ed210c419c8629580",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"6696a09ed210c419c8629580"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OWQ2NmY1NjQ1ZGM2Yjc0NDZjNDkyYiIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MjE1OTc1MDEsImV4cCI6MTcyNDE4OTUwMX0.msOur1P9Dx7Vy7zLiqlwjRRMlMXNRFFnvmxhbwKWV44",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"imageUrl\": \"https://images.unsplash.com/photo-1713769918995-9d1a7607d051?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\r\n    \"category\": \"Painting\",\r\n    \"tags\": [\r\n        \"test\",\r\n        \"nature\",\r\n        \"rocks\",\r\n        \"photography\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/image",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add image to FAVOURITE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OWQ2NmY1NjQ1ZGM2Yjc0NDZjNDkyYiIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MjE1OTM3NTksImV4cCI6MTcyNDE4NTc1OX0.K7hiBWkHFejXq5aS4Q09Yl-OOPw37Aus-RWufvzslfE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/image/favourite/669fc307150b9f891ac39fb5",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"favourite",
+								"669fc307150b9f891ac39fb5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user favoutite images",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTZmMDQ4NzUwNDI5Yzk3ZGMxNjI5NSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MjExNjc5NDgsImV4cCI6MTcyMzc1OTk0OH0.2qUb11m9KbSw08FIFERCOXuwAcPIn7wW-cEB_0lzydk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/image/favourite",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"favourite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove from favourite",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTZmMDQ4NzUwNDI5Yzk3ZGMxNjI5NSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MjExNjc5NDgsImV4cCI6MTcyMzc1OTk0OH0.2qUb11m9KbSw08FIFERCOXuwAcPIn7wW-cEB_0lzydk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/image/favourite/6696f0329b940018940309e3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"favourite",
+								"6696f0329b940018940309e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET image by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/image/category/nature",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"category",
+								"nature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Uploads",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTZmMDQ4NzUwNDI5Yzk3ZGMxNjI5NSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MjExNjc5NDgsImV4cCI6MTcyMzc1OTk0OH0.2qUb11m9KbSw08FIFERCOXuwAcPIn7wW-cEB_0lzydk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/image/user/uploads",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"user",
+								"uploads"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search image by tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/image/search?tag=nature",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"image",
+								"search"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "nature"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTkyODQ0N2YxM2VkZGVmMzFlMzdkYSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MjE1NzE3MzksImV4cCI6MTcyNDE2MzczOX0.E068KU3KwlCSwFsBqo-TNcokzOyINsxDlJeN4sYq4bY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/user/myaccount",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"myaccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET user by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/user/66a5104ac5171969f9a9459f",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"66a5104ac5171969f9a9459f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET user by username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/user/username/test",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"username",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "GET presigned URL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTkyODQ0N2YxM2VkZGVmMzFlMzdkYSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJpYXQiOjE3MjE0OTI5NjksImV4cCI6MTcyNDA4NDk2OX0.e1ZsApaZX0i_uilSYB9vJDP1DH3aVAKPmVNaFZnBjho",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

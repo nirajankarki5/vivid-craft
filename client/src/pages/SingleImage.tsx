@@ -114,7 +114,7 @@ const SingleImage: React.FC = () => {
           </li>
         </ul>
       </div>
-      <Toaster />
+      {/* <Toaster /> */}
     </div>
   );
 };
