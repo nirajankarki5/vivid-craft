@@ -8,18 +8,31 @@ import ImageList from "@mui/material/ImageList";
 import Image from "../types/Image";
 import { FaHeart } from "react-icons/fa";
 import { IoMdHeartDislike } from "react-icons/io";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 import useAddToFav from "../hooks/useAddToFav";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { saveAs } from "file-saver";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteImage } from "../services/apiImages";
 
 interface Prop {
   imageList: Image[] | undefined;
+  tab?: string;
 }
 
-const ImageGrid: React.FC<Prop> = ({ imageList }) => {
+const ImageGrid: React.FC<Prop> = ({ imageList, tab }) => {
   const { mutation } = useAddToFav();
   const location = useLocation();
+  const queryClient = useQueryClient();
+
+  const deleteImgMutation = useMutation({
+    mutationFn: (imageId: string) => deleteImage(imageId),
+    onSuccess: () => {
+      toast.success("Image successfully deleted!");
+      queryClient.invalidateQueries({ queryKey: ["images"] });
+    },
+  });
 
   // make resposive image grid
   const isSmallScreen = useMediaQuery("(max-width:768px)");
@@ -86,17 +99,31 @@ const ImageGrid: React.FC<Prop> = ({ imageList }) => {
             </Link>
 
             <div className="bottom-0 left-0 z-50 flex w-full transform items-center justify-between px-4 py-3 shadow-sm transition-all duration-300 ease-in-out md:absolute md:translate-y-full md:shadow-none md:group-hover:translate-y-0">
-              <button
-                onClick={() => handleAddToFav(item._id)}
-                className="flex items-center gap-2 rounded-md border-[1px] border-gray-400 bg-white p-2 px-2"
-              >
-                {location.pathname === "/my-profile" ? (
-                  <IoMdHeartDislike className="text-xl text-gray-400" />
-                ) : (
-                  <FaHeart className="text-xl text-gray-400" />
-                )}
-                <span>{item.favouritesCount}</span>
-              </button>
+              {/* when upload tab is not selected in my-profile, display HEART ICON */}
+              {tab !== "uploads" && (
+                <button
+                  onClick={() => handleAddToFav(item._id)}
+                  className="flex items-center gap-2 rounded-md border-[1px] border-gray-400 bg-white p-2 px-2"
+                >
+                  {location.pathname === "/my-profile" && tab === "likes" ? (
+                    <IoMdHeartDislike className="text-xl text-gray-400" />
+                  ) : (
+                    <FaHeart className="text-xl text-gray-400" />
+                  )}
+                  <span>{item.favouritesCount}</span>
+                </button>
+              )}
+
+              {/* When upload tab is selected in my-profile, display delete icon */}
+              {tab === "uploads" && (
+                <button
+                  onClick={() => deleteImgMutation.mutate(item._id)}
+                  className="flex items-center gap-2 rounded-md border-[1px] border-gray-400 bg-white p-2 px-2"
+                >
+                  <RiDeleteBinLine className="text-xl text-red-500" />
+                </button>
+              )}
+
               <button
                 onClick={() => saveAs(item.imageUrl, `image-${item._id}.jpg`)}
                 className="rounded-md border-[1px] border-gray-400 bg-white p-2 px-3 text-sm text-gray-500"

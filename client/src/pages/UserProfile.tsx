@@ -136,7 +136,10 @@ const UserProfile: React.FC = () => {
         {uploadAndFavQuery.isLoading && <Loading />}
 
         {/* Image Grid Goes here */}
-        <ImageGrid imageList={uploadAndFavQuery.data} />
+        <ImageGrid
+          imageList={uploadAndFavQuery.data}
+          tab={value === 0 ? "uploads" : "likes"}
+        />
       </div>
     </>
   );

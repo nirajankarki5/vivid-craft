@@ -191,3 +191,19 @@ export async function addToFavourite(body: {
     throw error;
   }
 }
+
+export async function deleteImage(imageId: string): Promise<any> {
+  try {
+    const response = await fetch(`${baseUrl}/image/${imageId}`, {
+      method: "DELETE",
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
