@@ -25,13 +25,15 @@ const getImageByCategory = async (req, res) => {
   ];
 
   if (category === "all") {
-    images = await Image.find({}).sort({ createdAt: -1 });
+    images = await Image.find({});
+
+    // sort images (latest first)
+    // images = await Image.find({}).sort({ createdAt: -1 });
   } else {
     // getting category name based on value (value comes from req.params)
     const categoryName = categories.find((item) => item.value === category);
-    images = await Image.find({ category: categoryName.name }).sort({
-      createdAt: -1,
-    });
+    // sort here also
+    images = await Image.find({ category: categoryName.name });
   }
 
   res.status(200).json(images);
