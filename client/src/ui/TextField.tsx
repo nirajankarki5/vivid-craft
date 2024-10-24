@@ -7,6 +7,8 @@ interface Prop {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+// const TextField: React.forwardRef<HTMLInputElement, Prop> = ({...}) => {...}
+
 const TextField: React.FC<Prop> = ({
   label,
   type,
