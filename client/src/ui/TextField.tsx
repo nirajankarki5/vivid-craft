@@ -7,6 +7,10 @@ interface Prop {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+// export interface InputProps
+//   extends React.InputHTMLAttributes<HTMLInputElement> {
+//   ...
+// }
 // const TextField: React.forwardRef<HTMLInputElement, Prop> = ({...}) => {...}
 
 const TextField: React.FC<Prop> = ({
