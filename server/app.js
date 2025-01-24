@@ -18,7 +18,7 @@ const errorHandler = require("./middleware/error-handler");
 const app = express();
 
 // Enable all CORS requests
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
 // middlewares
 app.use(express.json());
